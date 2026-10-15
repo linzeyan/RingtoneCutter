@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+  <!-- A bell with a waveform cut through it: a ringtone made from a song.
+       Source of truth for the app icon; `make icon` renders it into the asset catalog. -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFE45C"/>
+      <stop offset="1" stop-color="#FFB800"/>
+    </linearGradient>
+  </defs>
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+  <g fill="#1F1A00">
+    <circle cx="512" cy="214" r="38"/>
+    <path d="M512 236
+             C 372 236 318 344 318 472
+             L 318 600
+             C 318 668 282 708 236 740
+             L 236 772
+             L 788 772
+             L 788 740
+             C 742 708 706 668 706 600
+             L 706 472
+             C 706 344 652 236 512 236 Z"/>
+    <path d="M 446 806 A 66 66 0 0 0 578 806 Z"/>
+  </g>
+  <g fill="#FFD21F">
+    <rect x="340" y="505" width="24" height="70" rx="12"/>
+    <rect x="380" y="475" width="24" height="130" rx="12"/>
+    <rect x="420" y="445" width="24" height="190" rx="12"/>
+    <rect x="460" y="465" width="24" height="150" rx="12"/>
+    <rect x="500" y="425" width="24" height="230" rx="12"/>
+    <rect x="540" y="465" width="24" height="150" rx="12"/>
+    <rect x="580" y="445" width="24" height="190" rx="12"/>
+    <rect x="620" y="475" width="24" height="130" rx="12"/>
+    <rect x="660" y="505" width="24" height="70" rx="12"/>
+  </g>
+</svg>

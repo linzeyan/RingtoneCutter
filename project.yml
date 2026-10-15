@@ -1,0 +1,107 @@
+name: RingtoneCutter
+options:
+  bundleIdPrefix: com.zeyanlin
+  # iOS 18 so the iPhone XR (capped at 18.7) can run and test trimming.
+  # "Use as Ringtone" itself needs iOS 26 or later.
+  deploymentTarget:
+    iOS: "18.0"
+  developmentLanguage: zh-Hant
+
+targets:
+  RingtoneCutter:
+    type: application
+    platform: iOS
+    sources:
+      - path: RingtoneCutter
+        excludes:
+          - Info.plist
+    info:
+      path: RingtoneCutter/Info.plist
+      properties:
+        CFBundleDisplayName: 鈴聲剪輯
+        CFBundleShortVersionString: "1.0"
+        CFBundleVersion: "1"
+        # No network and no encryption of our own, so the export-compliance
+        # question never comes up on upload.
+        ITSAppUsesNonExemptEncryption: false
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        # Exposes Documents in the Files app, so exported clips can be set as
+        # a ringtone from there if the share sheet lacks "Use as Ringtone".
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        # Lists the app under "Open in…" for audio and video from other apps.
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: Audio
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes: [public.audio, public.audiovisual-content]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.zeyanlin.ringtonecutter
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        # Localizable.xcstrings is authored, not extracted: left on, every build
+        # rewrites the catalog and adds keys under the wrong format specifiers.
+        SWIFT_EMIT_LOC_STRINGS: NO
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: RingtoneCutter/Info.plist
+        # Simulator: ad-hoc signing, no Apple account needed.
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY[sdk=iphonesimulator*]: "-"
+        # Device: standard automatic signing.
+        CODE_SIGN_STYLE[sdk=iphoneos*]: Automatic
+        CODE_SIGN_IDENTITY[sdk=iphoneos*]: Apple Development
+        DEVELOPMENT_TEAM[sdk=iphoneos*]: NKJSLB6HBR
+
+  RingtoneCutterTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: RingtoneCutterTests
+    settings:
+      base:
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        # Signed like the app so the suite can also run on the iPhone XR.
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY[sdk=iphonesimulator*]: "-"
+        CODE_SIGN_STYLE[sdk=iphoneos*]: Automatic
+        CODE_SIGN_IDENTITY[sdk=iphoneos*]: Apple Development
+        DEVELOPMENT_TEAM[sdk=iphoneos*]: NKJSLB6HBR
+    dependencies:
+      - target: RingtoneCutter
+
+  # Store screenshots only (see `make screenshots`); skipped in a plain test run.
+  RingtoneCutterUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: RingtoneCutterUITests
+    settings:
+      base:
+        SWIFT_VERSION: "5.0"
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_STYLE: Manual
+        CODE_SIGN_IDENTITY[sdk=iphonesimulator*]: "-"
+        CODE_SIGN_STYLE[sdk=iphoneos*]: Automatic
+        CODE_SIGN_IDENTITY[sdk=iphoneos*]: Apple Development
+        DEVELOPMENT_TEAM[sdk=iphoneos*]: NKJSLB6HBR
+    dependencies:
+      - target: RingtoneCutter
+
+schemes:
+  RingtoneCutter:
+    build:
+      targets:
+        RingtoneCutter: all
+        RingtoneCutterTests: [test]
+        RingtoneCutterUITests: [test]
+    test:
+      targets:
+        - RingtoneCutterTests
+        - RingtoneCutterUITests
+    run:
+      config: Debug

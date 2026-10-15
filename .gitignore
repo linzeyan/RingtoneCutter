@@ -1,0 +1,16 @@
+# --- Xcode / xcodegen ---
+# RingtoneCutter.xcodeproj is generated from project.yml via `make generate` — not committed.
+RingtoneCutter.xcodeproj/
+*.xcuserstate
+xcuserdata/
+DerivedData/
+
+# --- Build output ---
+build/
+.build/
+
+# --- macOS ---
+.DS_Store
+*.log
+/docs
+screenshots/
