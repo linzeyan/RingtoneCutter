@@ -8,7 +8,12 @@ enum Waveform {
     /// Loudness (RMS) per bin across the whole song, normalized so the loudest bin is 1.
     /// RMS rather than peak: mastered pop music hits full scale almost everywhere,
     /// so peaks draw a flat block, while RMS shows verses, choruses and breaks.
-    static func levels(of url: URL, bins: Int) async throws -> [Float] {
+    ///
+    /// `onPartial` gets the bins read so far as they fill in from the start, with
+    /// bins not reached yet as NaN: the sound of a long video is spread through
+    /// gigabytes of picture, and its beginning should not wait for its end.
+    static func levels(of url: URL, bins: Int,
+                       onPartial: (@MainActor ([Float]) -> Void)? = nil) async throws -> [Float] {
         let asset = AVURLAsset(url: url)
         guard let track = try await asset.loadTracks(withMediaType: .audio).first else {
             throw WaveformError.noAudio
@@ -35,6 +40,8 @@ enum Waveform {
         var sums = [Float](repeating: 0, count: bins)
         var counts = [Int](repeating: 0, count: bins)
         var index = 0
+        let reportEvery = max(1, bins / 40)
+        var nextReport = reportEvery
         while let buffer = output.copyNextSampleBuffer() {
             try Task.checkCancellation()
             guard let block = CMSampleBufferGetDataBuffer(buffer) else { continue }
@@ -50,12 +57,24 @@ enum Waveform {
                 counts[bin] += 1
                 index += 1
             }
+            let reached = min(bins - 1, index * bins / total)
+            if let onPartial, reached >= nextReport {
+                nextReport = reached + reportEvery
+                await onPartial(normalized(sums, counts, upTo: reached))
+            }
         }
         if reader.status == .failed, let error = reader.error {
             throw error
         }
-        let levels = zip(sums, counts).map { $1 > 0 ? ($0 / Float($1)).squareRoot() : 0 }
-        let loudest = levels.max() ?? 0
+        return normalized(sums, counts, upTo: bins - 1)
+    }
+
+    /// RMS per bin scaled to the loudest so far; bins past `reached` are NaN, "not read yet".
+    private static func normalized(_ sums: [Float], _ counts: [Int], upTo reached: Int) -> [Float] {
+        let levels = zip(sums, counts).enumerated().map { bin, pair in
+            bin > reached ? Float.nan : pair.1 > 0 ? (pair.0 / Float(pair.1)).squareRoot() : 0
+        }
+        let loudest = levels.lazy.filter { !$0.isNaN }.max() ?? 0
         return loudest > 0 ? levels.map { $0 / loudest } : levels
     }
 }

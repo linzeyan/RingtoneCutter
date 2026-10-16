@@ -45,6 +45,52 @@ struct TrimSelectionTests {
     }
 }
 
+struct CloudLinkTests {
+    // A share link opens a preview page; downloading it as-is yields HTML, not
+    // audio. Each service must be rewritten to the address of the file itself.
+
+    @Test func googleDriveShareLinkBecomesDirectDownload() {
+        let share = URL(string: "https://drive.google.com/file/d/1AbC_dEf-123/view?usp=sharing")!
+        #expect(CloudLink.downloadURL(for: share).absoluteString
+            == "https://drive.usercontent.google.com/download?id=1AbC_dEf-123&export=download&confirm=t")
+        let open = URL(string: "https://drive.google.com/open?id=1AbC_dEf-123")!
+        #expect(CloudLink.downloadURL(for: open).absoluteString.contains("id=1AbC_dEf-123"))
+    }
+
+    @Test func dropboxKeepsItsKeyAndAsksForTheFile() {
+        let share = URL(string: "https://www.dropbox.com/scl/fi/abc123/song.mp3?rlkey=xyz&dl=0")!
+        let direct = CloudLink.downloadURL(for: share).absoluteString
+        #expect(direct == "https://www.dropbox.com/scl/fi/abc123/song.mp3?rlkey=xyz&dl=1")
+    }
+
+    // Example share link and encoding from Microsoft's "Accessing shared items" docs.
+    @Test func oneDriveUsesTheSharesAPI() {
+        let share = URL(string: "https://onedrive.live.com/redir?resid=1231244193912!12&authKey=1201919!12921!1")!
+        #expect(CloudLink.downloadURL(for: share).absoluteString
+            == "https://api.onedrive.com/v1.0/shares/u!aHR0cHM6Ly9vbmVkcml2ZS5saXZlLmNvbS9yZWRpcj9yZXNpZD0xMjMxMjQ0MTkzOTEyITEyJmF1dGhLZXk9MTIwMTkxOSExMjkyMSEx/root/content")
+    }
+
+    @Test func sharePointAsksForDownload() {
+        let share = URL(string: "https://contoso.sharepoint.com/:u:/g/personal/a_contoso_com/EabcD?e=XyZ")!
+        #expect(CloudLink.downloadURL(for: share).absoluteString
+            == "https://contoso.sharepoint.com/:u:/g/personal/a_contoso_com/EabcD?e=XyZ&download=1")
+    }
+
+    // S3 presigned URLs carry a signature in the query; touching it breaks the link.
+    @Test func directLinksAreLeftAlone() {
+        let s3 = URL(string: "https://bucket.s3.amazonaws.com/song.m4a?X-Amz-Signature=abc&X-Amz-Expires=600")!
+        #expect(CloudLink.downloadURL(for: s3) == s3)
+    }
+
+    // Share sheets paste "Title\nhttps://…" or a whole message, not a bare URL.
+    @Test func findsTheLinkInsidePastedText() {
+        let pasted = "看看這首 👉 https://www.dropbox.com/s/abc/song.mp3?dl=0 好聽"
+        #expect(CloudLink.url(in: pasted)?.host() == "www.dropbox.com")
+        #expect(CloudLink.url(in: "http://example.com/a.mp3") == nil)
+        #expect(CloudLink.url(in: "沒有網址") == nil)
+    }
+}
+
 struct TimeTextTests {
     // Song lengths rarely land on a whole tenth; a value just under a minute
     // boundary once rendered as "2:60.0" on the editor header.
@@ -104,6 +150,29 @@ struct WaveformTests {
         #expect(levels[2..<18].allSatisfy { $0 > 0.8 })
         #expect(levels[22..<38].allSatisfy { $0 < 0.05 })
     }
+
+    // A long video takes a while to read, so the waveform fills in from the start;
+    // what is not read yet must stay blank, never drawn as if it were silence.
+    @Test func partialLevelsOnlyLeaveTheUnreadEndBlank() async throws {
+        let dir = try temporaryDirectory()
+        let source = dir.appendingPathComponent("half.caf")
+        try writeTone(to: source, seconds: 40, silentAfter: 20)
+
+        let seen = await MainActor.run { Partials() }
+        let levels = try await Waveform.levels(of: source, bins: 40) { seen.all.append($0) }
+        let partials = await seen.all
+        #expect(partials.contains { $0.contains { $0.isNaN } })
+        for partial in partials {
+            let read = partial.prefix { !$0.isNaN }
+            #expect(partial.dropFirst(read.count).allSatisfy { $0.isNaN })
+        }
+        #expect(!levels.contains { $0.isNaN })
+    }
+}
+
+@MainActor
+private final class Partials {
+    var all: [[Float]] = []
 }
 
 private func temporaryDirectory() throws -> URL {

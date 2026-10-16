@@ -19,10 +19,10 @@ targets:
       path: RingtoneCutter/Info.plist
       properties:
         CFBundleDisplayName: 鈴聲剪輯
-        CFBundleShortVersionString: "1.0"
-        CFBundleVersion: "1"
-        # No network and no encryption of our own, so the export-compliance
-        # question never comes up on upload.
+        CFBundleShortVersionString: "1.1.0"
+        CFBundleVersion: "2"
+        # Only the system's HTTPS (for pasted share links), no encryption of our
+        # own, which is exempt; the export-compliance question never comes up.
         ITSAppUsesNonExemptEncryption: false
         UILaunchScreen: {}
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
@@ -36,6 +36,19 @@ targets:
             CFBundleTypeRole: Viewer
             LSHandlerRank: Alternate
             LSItemContentTypes: [public.audio, public.audiovisual-content]
+        # Optional "Save to iCloud Drive": public scope puts the container's
+        # Documents folder in iCloud Drive, visible in Files and Finder.
+        NSUbiquitousContainers:
+          iCloud.com.zeyanlin.ringtonecutter:
+            NSUbiquitousContainerIsDocumentScopePublic: true
+            NSUbiquitousContainerName: 鈴聲剪輯
+            NSUbiquitousContainerSupportedFolderLevels: None
+    entitlements:
+      path: RingtoneCutter/RingtoneCutter.entitlements
+      properties:
+        com.apple.developer.icloud-container-identifiers: [iCloud.com.zeyanlin.ringtonecutter]
+        com.apple.developer.icloud-services: [CloudDocuments]
+        com.apple.developer.ubiquity-container-identifiers: [iCloud.com.zeyanlin.ringtonecutter]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.zeyanlin.ringtonecutter

@@ -2,8 +2,9 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<!-- No tracking, nothing collected, no network at all: audio is read and
-	     written on the device only. The only required-reason API, UserDefaults,
+	<!-- No tracking, nothing collected: audio is read and written on the device
+	     only, and the network is used solely to download a link the user pastes,
+	     straight from that address. The only required-reason API, UserDefaults,
 	     is used by the DEBUG-only `-openFile` launch argument and is not in
 	     Release builds. -->
 	<key>NSPrivacyTracking</key>

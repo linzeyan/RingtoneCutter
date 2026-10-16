@@ -32,7 +32,7 @@ STATUS_BAR   ?= --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 \
 DEMO         := $(DERIVED)/demo
 
 .DEFAULT_GOAL := help
-.PHONY: help setup generate icon build test run run-device open clean demo-audio screenshots shots-device release archive ipa
+.PHONY: help setup generate icon build test run run-device open clean demo-audio screenshots shots-device bench release archive ipa
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -136,6 +136,19 @@ shots-device:
 	@xcrun xcresulttool export attachments \
 		--path "$(DERIVED)/shots.xcresult" --output-path "$(OUT)" >/dev/null
 	@python3 scripts/name_screenshots.py "$(OUT)"
+
+# Release build: the waveform loop is many times slower unoptimized, which would
+# measure Debug, not the app. BENCH_DEST picks the simulator or the iPhone.
+BENCH_DEST ?= platform=iOS Simulator,name=$(SIMULATOR)
+bench: generate ## Time/memory/disk for big inputs: make bench BENCH_FILES=/abs/a.mp4:/abs/b.m4a
+	@test -n "$(BENCH_FILES)" || { echo "BENCH_FILES is required" >&2; exit 2; }
+	TEST_RUNNER_RINGTONE_BENCH_FILES="$(BENCH_FILES)" TEST_RUNNER_RINGTONE_BENCH_HOLD="$(BENCH_HOLD)" \
+	xcodebuild test -project $(PROJECT) -scheme $(SCHEME) \
+		-configuration Release ENABLE_TESTABILITY=YES \
+		-derivedDataPath $(DERIVED) \
+		-destination '$(BENCH_DEST)' \
+		-allowProvisioningUpdates \
+		-only-testing:RingtoneCutterTests/LargeFileBenchmarks
 
 release: archive ipa ## Archive + export an uploadable .ipa
 

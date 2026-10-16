@@ -4,6 +4,7 @@ struct EditorView: View {
     @Bindable var model: EditorModel
     @State private var isNaming = false
     @State private var draftName = ""
+    @AppStorage(EditorModel.iCloudKey) private var saveToICloud = false
 
     var body: some View {
         VStack(spacing: 16) {
@@ -140,13 +141,25 @@ struct EditorView: View {
 
             if let url = model.exportedURL {
                 HStack(spacing: 4) {
-                    Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
-                    Text("已存成「\(url.lastPathComponent)」")
-                        .lineLimit(1)
-                        .truncationMode(.middle)
+                    Image(systemName: model.savedToICloud ? "icloud.fill" : "checkmark.circle.fill")
+                        .foregroundStyle(model.savedToICloud ? Color.accentColor : .green)
+                    Group {
+                        if model.savedToICloud {
+                            Text("已存到 iCloud 雲碟「\(url.lastPathComponent)」")
+                        } else {
+                            Text("已存成「\(url.lastPathComponent)」")
+                        }
+                    }
+                    .lineLimit(1)
+                    .truncationMode(.middle)
                     ShareLink("再次分享", item: url)
                 }
                 .font(.footnote)
+                if saveToICloud && !model.savedToICloud {
+                    Label("iCloud 雲碟無法使用，已存在這台 iPhone。", systemImage: "exclamationmark.icloud")
+                        .font(.footnote)
+                        .foregroundStyle(.orange)
+                }
             }
             Text(ringtoneHint)
                 .font(.footnote)
@@ -161,7 +174,7 @@ struct EditorView: View {
         if #available(iOS 26, *) {
             "在分享選單點「用作鈴聲」即可設定。"
         } else {
-            "此 iOS 版本無法直接設為鈴聲（需 iOS 26）。檔案會存在「檔案」App →「我的 iPhone」→「鈴聲剪輯」。"
+            "此 iOS 版本無法直接設為鈴聲（需 iOS 26）。檔案會存在「檔案」App 的「鈴聲剪輯」資料夾。"
         }
     }
 }

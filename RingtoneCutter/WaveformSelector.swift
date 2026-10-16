@@ -196,7 +196,8 @@ private struct WaveformBars: View {
             let step = (range.upperBound - range.lowerBound) / Double(count)
             for i in 0..<count {
                 let from = range.lowerBound + Double(i) * step
-                let level = level(from: from, to: from + step)
+                // Not read yet: no bar, rather than a flat one that reads as silence.
+                guard let level = level(from: from, to: from + step) else { continue }
                 let barHeight = max(minBarHeight, CGFloat(level) * size.height)
                 let rect = CGRect(x: CGFloat(i) * barWidth, y: (size.height - barHeight) / 2,
                                   width: max(barWidth - 1.5, 1), height: barHeight)
@@ -209,12 +210,12 @@ private struct WaveformBars: View {
     }
 
     /// Levels are computed once at a fixed resolution; bars follow the zoom and width.
-    private func level(from: Double, to: Double) -> Float {
+    private func level(from: Double, to: Double) -> Float? {
         guard !levels.isEmpty else { return 0 }
         let scale = Double(levels.count) / selection.duration
         let lower = min(levels.count - 1, max(0, Int(from * scale)))
         let upper = max(lower + 1, min(levels.count, Int(to * scale)))
-        return levels[lower..<upper].max() ?? 0
+        return levels[lower..<upper].lazy.filter { !$0.isNaN }.max()
     }
 }
 

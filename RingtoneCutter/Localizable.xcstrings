@@ -1,343 +1,543 @@
 {
-  "sourceLanguage": "zh-Hant",
-  "version": "1.0",
-  "strings": {
-    "%@ / %lld 秒": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ / %lld s"
+  "sourceLanguage" : "zh-Hant",
+  "version" : "1.0",
+  "strings" : {
+    "%@ / %lld 秒" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ / %lld s"
           }
         }
       }
     },
-    "%@ 到 %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ to %@"
+    "%@ 到 %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ to %@"
           }
         }
       }
     },
-    "%@ 鈴聲": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ Ringtone"
+    "%@ 鈴聲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ Ringtone"
           }
         }
       }
     },
-    "%@延後 0.1 秒": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ 0.1 s later"
+    "%@延後 0.1 秒" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 0.1 s later"
           }
         }
       }
     },
-    "%@提早 0.1 秒": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ 0.1 s earlier"
+    "%@提早 0.1 秒" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 0.1 s earlier"
           }
         }
       }
     },
-    "停止試聽": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Stop Preview"
+    "iCloud 雲碟" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Drive"
           }
         }
       }
     },
-    "再次分享": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Share Again"
+    "iCloud 雲碟無法使用，已存在這台 iPhone。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Drive is unavailable, so it was saved on this iPhone."
           }
         }
       }
     },
-    "剪輯失敗：%@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn’t make the ringtone: %@"
+    "iCloud 雲碟：存在 iCloud 雲碟的「鈴聲剪輯」資料夾，其他 iPhone、iPad、Mac 也拿得到。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "iCloud Drive: saved in the Ringtone Cutter folder in iCloud Drive, available on your other iPhone, iPad and Mac."
           }
         }
       }
     },
-    "取消": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancel"
+    "iPhone 的鈴聲清單不會跨裝置同步：在另一台 iPhone 上，從「檔案」打開鈴聲，再點「用作鈴聲」。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The iPhone ringtone list doesn’t sync between devices: on another iPhone, open the ringtone from Files and tap “Use as Ringtone”."
           }
         }
       }
     },
-    "在分享選單點「用作鈴聲」即可設定。": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "In the share sheet, tap “Use as Ringtone”."
+    "下載" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download"
           }
         }
       }
     },
-    "好": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OK"
+    "下載中…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Downloading…"
           }
         }
       }
     },
-    "已存成「%@」": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Saved as “%@”"
+    "下載失敗：%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Download failed: %@"
           }
         }
       }
     },
-    "換一首": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Change Song"
+    "伺服器回應錯誤（%lld），請確認連結是否仍然有效、已公開分享。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The server returned an error (%lld). Check that the link still works and is shared publicly."
           }
         }
       }
     },
-    "支援 MP3、M4A、AAC、WAV、AIFF、FLAC、ALAC、Opus、AC-3，以及 MP4、MOV 影片的聲音": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Works with MP3, M4A, AAC, WAV, AIFF, FLAC, ALAC, Opus and AC-3, plus the sound from MP4 and MOV videos"
+    "停止試聽" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stop Preview"
           }
         }
       }
     },
-    "此 iOS 版本無法直接設為鈴聲（需 iOS 26）。檔案會存在「檔案」App →「我的 iPhone」→「鈴聲剪輯」。": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This iOS version can’t set ringtones directly (iOS 26 required). The file is saved in Files → On My iPhone → Ringtone Cutter."
+    "儲存位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save Location"
           }
         }
       }
     },
-    "淡入淡出": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Fade In & Out"
+    "儲存位置說明" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "About Save Location"
           }
         }
       }
     },
-    "無法讀取「%@」。WMA、WebM、MKV 等格式請先轉成 MP3 或 M4A。": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Couldn’t read “%@”. Formats such as WMA, WebM and MKV need converting to MP3 or M4A first."
+    "再次分享" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share Again"
           }
         }
       }
     },
-    "片段位置": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Clip Position"
+    "剪輯失敗：%@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t make the ringtone: %@"
           }
         }
       }
     },
-    "發生錯誤": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Something Went Wrong"
+    "取消" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancel"
           }
         }
       }
     },
-    "結束": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "End"
+    "在分享選單點「用作鈴聲」即可設定。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In the share sheet, tap “Use as Ringtone”."
           }
         }
       }
     },
-    "製作": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Make"
+    "好" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         }
       }
     },
-    "製作 iPhone 鈴聲": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Make an iPhone Ringtone"
+    "已存到 iCloud 雲碟「%@」" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved to iCloud Drive as “%@”"
           }
         }
       }
     },
-    "製作鈴聲": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Make Ringtone"
+    "已存成「%@」" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved as “%@”"
           }
         }
       }
     },
-    "試聽片段": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Preview Clip"
+    "找不到 https 開頭的網址。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No link starting with https was found."
           }
         }
       }
     },
-    "讀取中…": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Loading…"
+    "換一首" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Change Song"
           }
         }
       }
     },
-    "這個名稱會顯示在 iPhone 的鈴聲清單中": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This name appears in your iPhone’s ringtone list"
+    "支援 Google 雲端硬碟、Dropbox、OneDrive 的公開分享連結，以及 S3 等可以直接下載的網址。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Works with public share links from Google Drive, Dropbox and OneDrive, and with direct download links such as S3."
           }
         }
       }
     },
-    "這個音檔格式無法轉換": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "This audio format can’t be converted"
+    "支援 MP3、M4A、AAC、WAV、AIFF、FLAC、ALAC、Opus、AC-3，以及 MP4、MOV 影片的聲音" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Works with MP3, M4A, AAC, WAV, AIFF, FLAC, ALAC, Opus and AC-3, plus the sound from MP4 and MOV videos"
           }
         }
       }
     },
-    "選一首歌，剪下 30 秒以內的片段": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Pick a song and cut a clip of up to 30 seconds"
+    "檔案超過 500 MB，請改用較小的檔案。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The file is larger than 500 MB. Please use a smaller file."
           }
         }
       }
     },
-    "選擇音檔": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Choose Audio"
+    "此 iOS 版本無法直接設為鈴聲（需 iOS 26）。檔案會存在「檔案」App 的「鈴聲剪輯」資料夾。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This iOS version can’t set ringtones directly (iOS 26 required). The file is saved in the Ringtone Cutter folder in the Files app."
           }
         }
       }
     },
-    "鈴聲": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ringtone"
+    "淡入淡出" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fade In & Out"
           }
         }
       }
     },
-    "鈴聲剪輯": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ringtone Cutter"
+    "無法讀取「%@」。WMA、WebM、MKV 等格式請先轉成 MP3 或 M4A。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t read “%@”. Formats such as WMA, WebM and MKV need converting to MP3 or M4A first."
           }
         }
       }
     },
-    "鈴聲名稱": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ringtone Name"
+    "無法讀取這支影片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Couldn’t read this video"
           }
         }
       }
     },
-    "鈴聲開頭漸強、結尾漸弱": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ease the ringtone in and out"
+    "片段位置" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Clip Position"
           }
         }
       }
     },
-    "開始": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Start"
+    "發生錯誤" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Something Went Wrong"
+          }
+        }
+      }
+    },
+    "結束" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "End"
+          }
+        }
+      }
+    },
+    "製作" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make"
+          }
+        }
+      }
+    },
+    "製作 iPhone 鈴聲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make an iPhone Ringtone"
+          }
+        }
+      }
+    },
+    "製作鈴聲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Make Ringtone"
+          }
+        }
+      }
+    },
+    "試聽片段" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Preview Clip"
+          }
+        }
+      }
+    },
+    "讀取中…" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Loading…"
+          }
+        }
+      }
+    },
+    "貼上連結" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paste a Link"
+          }
+        }
+      }
+    },
+    "這個名稱會顯示在 iPhone 的鈴聲清單中" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This name appears in your iPhone’s ringtone list"
+          }
+        }
+      }
+    },
+    "這個連結打開的是網頁，不是檔案。請確認已設為「知道連結的人都能檢視」，或改貼直接下載的網址。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This link opens a web page, not a file. Make sure it’s shared with “Anyone with the link”, or paste a direct download link instead."
+          }
+        }
+      }
+    },
+    "這個音檔格式無法轉換" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This audio format can’t be converted"
+          }
+        }
+      }
+    },
+    "這台 iPhone" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This iPhone"
+          }
+        }
+      }
+    },
+    "這台 iPhone：存在「檔案」→「我的 iPhone」→「鈴聲剪輯」。刪除 App 時會一起刪除。" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "This iPhone: saved in Files → On My iPhone → Ringtone Cutter, and removed if you delete the app."
+          }
+        }
+      }
+    },
+    "選一首歌，剪下 30 秒以內的片段" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pick a song and cut a clip of up to 30 seconds"
+          }
+        }
+      }
+    },
+    "選擇影片" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Video"
+          }
+        }
+      }
+    },
+    "選擇檔案" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose File"
+          }
+        }
+      }
+    },
+    "鈴聲" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringtone"
+          }
+        }
+      }
+    },
+    "鈴聲剪輯" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringtone Cutter"
+          }
+        }
+      }
+    },
+    "鈴聲名稱" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ringtone Name"
+          }
+        }
+      }
+    },
+    "鈴聲開頭漸強、結尾漸弱" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ease the ringtone in and out"
+          }
+        }
+      }
+    },
+    "開始" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Start"
           }
         }
       }
